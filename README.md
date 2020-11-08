@@ -12,6 +12,16 @@ pip install -r requirements.txt
 export FLASK_APP=server.py && flask run
 
 
+# for frontend
+on the PI,type the following instructions would open mpeg streamer to ythe electron app:
+(https://github.com/jacksonliam/mjpg-streamer)
+
+to change the ip address to the PI's ip. (./frontend/index.html:38)
+
+for starting electron:
+cd ./frontend/ && npm start
+ 
+
 
 
 
