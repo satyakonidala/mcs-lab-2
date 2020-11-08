@@ -13,3 +13,8 @@ export FLASK_APP=server.py && flask run
 
 
 
+
+
+https://stackoverflow.com/questions/22615475/flask-application-with-background-threads
+
+
