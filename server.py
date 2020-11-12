@@ -1,47 +1,28 @@
-from flask import Flask, render_template, session, copy_current_request_context
-from flask_socketio import SocketIO, emit, disconnect
-from threading import Lock
+from flask import Flask
+from flask import request
 
+import socket
 
-async_mode = None
+HOST_IP = "192.168.1.108" # pi
+HOST_PORT = 65222        # The port used by the server
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-socket_ = SocketIO(app, async_mode=async_mode)
-thread = None
-thread_lock = Lock()
 
+@app.route('/health')
+def health():
+    return 'ok'
 
-@app.route('/')
-def index():
-    return render_template('index.html', async_mode=socket_.async_mode)
+@app.route('/post-to-car',methods=['POST'])
+def postToCar():
+    data_to_post = request.form['data']
+    print("sendind data",data_to_post)
 
-
-@socket_.on('my_event', namespace='/test')
-def test_message(message):
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']})
-
-
-@socket_.on('my_broadcast_event', namespace='/test')
-def test_broadcast_message(message):
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']},
-         broadcast=True)
-
-
-@socket_.on('disconnect_request', namespace='/test')
-def disconnect_request():
-    @copy_current_request_context
-    def can_disconnect():
-        disconnect()
-
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': 'Disconnected!', 'count': session['receive_count']},
-         callback=can_disconnect)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((HOST_IP, HOST_PORT))
+        s.send(data_to_post.encode())
+        s.close()
+    return 'ok'
 
 
 if __name__ == '__main__':
-    socket_.run(app, debug=True)
+   app.run()

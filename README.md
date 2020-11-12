@@ -1,6 +1,6 @@
 
 # For python backend
-to create a venv folder:
+to create a venv folder (pre install venv: sudo apt-get install python3-venv):
 python3 -m venv venv
 
 activate the corresponding environment:
