@@ -1,7 +1,7 @@
 import bluetooth
 
-hostMACAddress = 'A4:83:E7:34:53:7A' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
-port = 30
+hostMACAddress = 'DC:A6:32:96:1F:92' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+port = 5
 backlog = 1
 size = 1024
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
@@ -17,7 +17,7 @@ try:
         if data:
             print(data)
             client.send(data) # Echo back to client
-except: 
+except:
     print("Closing socket")
     if client:
         client.close()
