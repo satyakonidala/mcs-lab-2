@@ -23,8 +23,10 @@ on the PI,type the following instructions would open mpeg streamer to ythe elect
 to change the ip address to the PI's ip. (./frontend/index.html:38)
 
 ## for starting frontend electron:
+npm install -g electron
+
 for starting electron:
-cd ./frontend/ && npm start
+cd ./frontend/ && npm install && npm start
  
 
 
