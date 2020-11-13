@@ -1,19 +1,19 @@
 import socket
-import drive_car
+import pi_car
 
 def navigate_car(data):
     if(data =='forward'):
         print("driving forward")
-        drive_car.mforward()
+        pi_car.mforward()
     if(data =='left'):
         print("driving left")
-        drive_car.mleft()
+        pi_car.mleft()
     if(data =='right'):
         print("driving right")
-        drive_car.mright()
+        pi_car.mright()
     if(data =='back'):
         print("driving back")
-        drive_car.mbackward()
+        pi_car.mbackward()
 
 ServerSocket = socket.socket()
 host = "192.168.1.108"
@@ -23,6 +23,7 @@ try:
     ServerSocket.bind((host, port))
 except socket.error as e:
     print(str(e))
+    ServerSocket.close()
 
 ServerSocket.listen(5)
 times_client_connected = 0
@@ -37,6 +38,9 @@ while True:
         if data:
             print(data)
             navigate_car(data.decode())
+            print("car info")
+            print(pi_car.car_state().encode())
+            Client.sendall(pi_car.car_state().encode())
         else:
             break
     Client.close()

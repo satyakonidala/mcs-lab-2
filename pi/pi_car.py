@@ -3,6 +3,7 @@ import time
 import numpy as np
 import math
 import RPi.GPIO as GPIO
+import json
 
 def mforward():
     speed4 = fc.Speed(25)
@@ -48,3 +49,6 @@ def mright():
     speed4.deinit()
     fc.stop()
 
+def car_state():
+    state = fc.utils.pi_read()
+    return json.dumps(state)
