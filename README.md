@@ -7,8 +7,8 @@ For starting python backend
 to create a venv folder (pre install venv: sudo apt-get install python3-venv):
 ```
 python3 -m venv venv
-. venv/bin/activate //activate the corresponding environment:
-pip install -r requirements.txt //install from requirements.txt
+. venv/bin/activate #activate the corresponding environment:
+pip install -r requirements.txt #install from requirements.txt
 ```
 
 export FLASK_APP=server.py && flask run
