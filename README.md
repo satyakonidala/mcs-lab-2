@@ -5,15 +5,11 @@ On Host
 For starting python backend
 ----------------
 to create a venv folder (pre install venv: sudo apt-get install python3-venv):
+```
 python3 -m venv venv
-
-activate the corresponding environment:
-. venv/bin/activate
-
-
-install from requirements.txt
-pip install -r requirements.txt
-
+. venv/bin/activate //activate the corresponding environment:
+pip install -r requirements.txt //install from requirements.txt
+```
 
 export FLASK_APP=server.py && flask run
 
