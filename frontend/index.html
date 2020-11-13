@@ -13,10 +13,10 @@
   <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
   <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
   <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
-  <script src="jquery.js"/>
-<script>
-  try { $ = jQuery = module.exports; } catch(e) {console.log(e)}
-</script>
+  <script src="jquery.js" />
+  <script>
+    try { $ = jQuery = module.exports; } catch (e) { console.log(e) }
+  </script>
 </head>
 
 <body>
@@ -32,7 +32,8 @@
             <div class="card-body">
               <h5 class="card-title">Camera view</h5>
               <p class="card-text">Streaming video of the PI car's camera</p>
-              <iframe src="http://192.168.1.108:8080/?action=stream"  width="650" height="490" class="rotated-iframe"></iframe>
+              <iframe src="http://192.168.1.108:8080/?action=stream" width="650" height="490"
+                class="rotated-iframe"></iframe>
             </div>
           </div>
         </div>
@@ -40,9 +41,18 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Car telemetrics</h5>
-              <p class="card-text">PI Temperature: </p>
-              <p class="card-text">Current Speed: </p>
-              <p class="card-text">PI temperature: </p>
+              <div class="row">
+                <div class="card-text col-5">CPU Temperature:</div>
+                <div id="cpu_temperature" class="col"> </div>
+              </div>
+              <div class="row">
+                <div class="card-text col-5">CPU Usage:</div>
+                <div id="cpu_usage" class="col"> </div>
+              </div>
+              <div class="row">
+                <div class="card-text col-5">Battery:</div>
+                <div id="battery" class="col"> </div>
+              </div>
             </div>
           </div>
           <div class="card">

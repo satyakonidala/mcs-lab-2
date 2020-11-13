@@ -20,8 +20,11 @@ def postToCar():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST_IP, HOST_PORT))
         s.send(data_to_post.encode())
+        data_from_server = s.recv(1024)
+        print("data_from_server", data_from_server)
+        print(data_from_server)
         s.close()
-    return 'ok'
+    return data_from_server.decode()
 
 
 if __name__ == '__main__':

@@ -5,26 +5,37 @@
 // selectively enable features needed in the rendering
 // process.
 flaskServerUrl = "http://localhost:5000/post-to-car"
+
+const sendAjaxRequest = function (data) {
+  console.log("sending data: ", data)
+  $.post( flaskServerUrl, { data: data } , function(data, status){
+    car_info = JSON.parse(data)
+    $("#cpu_temperature").text(car_info.cpu_temperature +"C")
+    $("#cpu_usage").text(car_info.cpu_usage + "%")
+    $("#battery").text(car_info.battery + "W")
+  });
+}
+
+$(document).ready ( function(){
+  sendAjaxRequest('dummy');
+})
+
 document.onkeydown = function(e) {
   switch(e.which) {
       case 37: // left
-      console.log("left pressed");
-      $.post( flaskServerUrl, { data: "left" } );
+      sendAjaxRequest("left")
       break;
 
-      case 38: // up
-      console.log("forward pressed");
-      $.post( flaskServerUrl, { data: "forward" } );
+      case 38: // forward
+      sendAjaxRequest("forward")
       break;
 
       case 39: // right
-      console.log("right pressed");
-      $.post( flaskServerUrl, { data: "right" } );
+      sendAjaxRequest("right")
       break;
-      down
-      case 40: // down
-      console.log("back pressed");
-      $.post( flaskServerUrl, { data: "back" } );
+
+      case 40: // back
+      sendAjaxRequest("back")
       break;
 
       default: return; // exit this handler for other keys
